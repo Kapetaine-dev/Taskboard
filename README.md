@@ -1,5 +1,8 @@
 # TaskBoardProject
 
+Les commandes ci dessous sont déjà pertinentes par rapport aux livrables demandés.
+## Ici les routes fonctionnelles : http://localhost:4200/ & http://localhost:4200/about
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.12.
 
 ## Development server
