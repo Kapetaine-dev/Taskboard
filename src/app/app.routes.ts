@@ -1,13 +1,13 @@
 // src/app/app.routes.ts
 import { Routes } from '@angular/router';
-import { Home } from './home/home';
+import { HomeComponent } from './home/home';
 import { About } from './about/about';
 
 
 export const routes: Routes = [
   {
     path: '',
-    component: Home,       // route d’accueil
+    component: HomeComponent,       // route d’accueil
   },
   {
     path: 'about',
