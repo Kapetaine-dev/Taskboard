@@ -1,0 +1,15 @@
+.about {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.about h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.about p {
+  color: #9ca3af;
+}

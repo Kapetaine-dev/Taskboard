@@ -1,0 +1,61 @@
+<!-- src/app/features/tasks/tasks-page/tasks-page.html -->
+<section class="tasks-page">
+  <header class="tasks-header">
+    <h1>Mes tâches</h1>
+    <p>Créez, visualisez et organisez vos tâches.</p>
+  </header>
+
+  <section class="tasks-form-section">
+    <h2>Nouvelle tâche</h2>
+
+    <form
+      class="task-form"
+      (submit)="addTask(title.value, description.value); title.value=''; description.value=''; $event.preventDefault()"
+    >
+      <div class="form-row">
+        <input
+          #title
+          type="text"
+          placeholder="Titre de la tâche"
+          class="input"
+        />
+      </div>
+      <div class="form-row">
+        <textarea
+          #description
+          rows="3"
+          placeholder="Description (optionnelle)"
+          class="textarea"
+        ></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        Ajouter la tâche
+      </button>
+    </form>
+  </section>
+
+  <section class="tasks-list-section">
+    <h2>Liste des tâches</h2>
+
+    @if (tasks$ | async; as tasks) {
+      @if (tasks.length === 0) {
+        <p class="empty-state">Aucune tâche pour le moment.</p>
+      } @else {
+        <ul class="task-list">
+          @for (t of tasks; track t.id) {
+            <li class="task-card">
+              <h3 class="task-title">{{ t.title }}</h3>
+              <p class="task-description">{{ t.description }}</p>
+
+                <button class="btn btn-danger" (click)="removeTask(t.id)">
+                  Supprimer
+                </button>
+            </li>
+          }
+        </ul>
+      }
+    } @else {
+      <p class="loading">Chargement des tâches...</p>
+    }
+  </section>
+</section>

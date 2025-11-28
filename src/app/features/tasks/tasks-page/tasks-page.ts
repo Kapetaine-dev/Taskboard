@@ -1,23 +1,24 @@
-// src/app/home/home.ts
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+// src/app/features/tasks/tasks-page/tasks-page.ts
+import { Component, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
+import { Task, TaskItem } from '../../../core/services/task';
 import { Observable } from 'rxjs';
-import { Task, TaskItem } from '../core/services/task';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-tasks-page',
   standalone: true,
   imports: [AsyncPipe],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './home.html',
-  styleUrls: ['./home.css'],
+  templateUrl: './tasks-page.html',
+  styleUrls: ['./tasks-page.css'],
 })
-export class HomeComponent {
+export class TasksPage {
   private readonly taskService = inject(Task);
-
   readonly tasks$: Observable<TaskItem[]> = this.taskService.tasks$;
 
   addTask(title: string, description: string): void {
+    if (!title.trim()) {
+      return;
+    }
     this.taskService.addTask(title, description);
   }
   removeTask(id: number) {
