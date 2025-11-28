@@ -10,8 +10,9 @@ import { Task } from '../core/services/task';
   styleUrl: './home.css',
 })
 export class Home {
-  tasks$!: ReturnType<Task['gettasks']>;
   count = 0;
+  
+  tasks$!: ReturnType<Task['gettasks']>;
   private intervalId?: number;
 
   constructor(private taskService: Task) {
