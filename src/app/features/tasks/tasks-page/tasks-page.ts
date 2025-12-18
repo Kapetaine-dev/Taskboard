@@ -1,8 +1,7 @@
-// src/app/features/tasks/tasks-page/tasks-page.ts
-import { Component, inject } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Task, TaskItem } from '../../../core/services/task';
-import { Observable } from 'rxjs';
+import { TaskHighlight } from '../task-highlight/task-highlight';
 
 @Component({
   selector: 'app-tasks-page',
@@ -13,16 +12,22 @@ import { Observable } from 'rxjs';
 })
 export class TasksPage {
   private readonly taskService = inject(Task);
-  readonly tasks$: Observable<TaskItem[]> = this.taskService.tasks$;
+  readonly tasks$ = this.taskService.tasks$;
 
   addTask(title: string, description: string): void {
-    if (!title.trim()) {
-      return;
-    }
     this.taskService.addTask(title, description);
   }
-  removeTask(id: number) {
-  this.taskService.removeTask(id);
-}
 
+  removeTask(id: number): void {
+    this.taskService.removeTask(id);
+  }
+
+  @ViewChild('highlightContainer', { read: ViewContainerRef })
+  container!: ViewContainerRef;
+
+  highlight(task: TaskItem): void {
+    this.container.clear();
+    const ref = this.container.createComponent(TaskHighlight);
+    ref.instance.title = task.title;
+  }
 }

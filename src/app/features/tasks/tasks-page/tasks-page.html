@@ -13,12 +13,7 @@
       (submit)="addTask(title.value, description.value); title.value=''; description.value=''; $event.preventDefault()"
     >
       <div class="form-row">
-        <input
-          #title
-          type="text"
-          placeholder="Titre de la tâche"
-          class="input"
-        />
+        <input #title type="text" placeholder="Titre de la tâche" class="input" />
       </div>
       <div class="form-row">
         <textarea
@@ -47,9 +42,16 @@
               <h3 class="task-title">{{ t.title }}</h3>
               <p class="task-description">{{ t.description }}</p>
 
-                <button class="btn btn-danger" (click)="removeTask(t.id)">
+              <div class="task-actions">
+                <!-- ✅ NOUVEAU -->
+                <button class="btn btn-secondary" type="button" (click)="highlight(t)">
+                  Mettre en avant
+                </button>
+
+                <button class="btn btn-danger" type="button" (click)="removeTask(t.id)">
                   Supprimer
                 </button>
+              </div>
             </li>
           }
         </ul>
@@ -57,5 +59,11 @@
     } @else {
       <p class="loading">Chargement des tâches...</p>
     }
+  </section>
+
+  <!-- ✅ NOUVEAU : zone d'injection du composant dynamique -->
+  <section class="tasks-highlight-section">
+    <h2>Tâche mise en avant</h2>
+    <div #highlightContainer></div>
   </section>
 </section>
