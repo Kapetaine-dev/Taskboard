@@ -8,12 +8,13 @@
   <section class="tasks-form-section">
     <h2>Nouvelle tâche</h2>
 
-    <form
-      class="task-form"
-      (submit)="addTask(title.value, description.value); title.value=''; description.value=''; $event.preventDefault()"
-    >
+ <form
+  class="task-form"
+  (submit)="addTask(taskInput.value, description.value); taskInput.value=''; description.value=''; $event.preventDefault()"
+>
+
       <div class="form-row">
-        <input #title type="text" placeholder="Titre de la tâche" class="input" />
+        <input #taskInput type="text" placeholder="Titre de la tâche" class="input" />
       </div>
       <div class="form-row">
         <textarea
